@@ -33,11 +33,12 @@ SolarCast/
 
 All dependencies are listed in `requirements.txt`. Core packages include:
 
-- pandas
-- numpy
-- scikit-learn
-- matplotlib
-- jupyter
+numpy==2.3.1  
+pandas==2.3.0  
+python-dateutil==2.9.0.post0  
+pytz==2025.2  
+six==1.17.0  
+tzdata==2025.2  
 
 To install all dependencies into a clean environment, follow the setup instructions below.
 
@@ -47,7 +48,7 @@ This project uses a virtual environment to isolate dependencies. To create and a
 
 ### Step 1: Create the environment
 
-python -m venv venv **
+python -m venv venv 
 
 ### Step 2: Activate the environment
 
@@ -63,11 +64,20 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
+### Step 4: Add the virtual environment as a Jupyter kernel
+
+pip install ipykernel  
+
+python -m ipykernel install --user --name=solarcast-venv --display-name "Python (solarcast-venv)"
+
 ## Running the Project
 
 After setting up the environment, you can start exploring the code by opening the Jupyter notebooks inside the notebooks/ folder.
 
 To activate the environment before running notebooks or scripts in future sessions:
+
+**Note:** If you see an error about running scripts being disabled when activating the virtual environment, temporarily allow script execution for the current session by running:  
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process    
 
 __Windows:__  
 
@@ -80,6 +90,14 @@ source venv/bin/activate
 Then run:  
 
 jupyter notebook
+
+## Select the Correct Kernel in Jupyter
+
+When opening your notebooks, select the kernel named Python (solarcast-venv) via:  
+
+Kernel > Change kernel > Python (solarcast-venv)  
+
+This ensures the notebook uses the correct virtual environment and installed packages.  
 
 ## Updating Requirements
 
