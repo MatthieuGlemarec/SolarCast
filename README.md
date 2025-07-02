@@ -21,19 +21,12 @@ The final dataset combines these into a single national-level input table for mo
 
 SolarCast/  
 ├── data/ # Raw weather station and solar generation CSVs  
-
 ├── cleaned_data/ # Processed national-level daily weather data  
-
 ├── notebooks/ # Jupyter notebooks by stage  
-
 ├── models/ # Trained model files  
-
 ├── outputs/ # Graphs, reports, exported forecasts  
-
-├── venv/ # Virtual environment (ignored by Git)  
-  
+├── venv/ # Virtual environment (ignored by Git)    
 ├── requirements.txt # Python dependencies  
-
 └── README.md # Project documentation  
 
 ## Dependencies
@@ -58,11 +51,11 @@ python -m venv venv **
 
 ### Step 2: Activate the environment
 
--Windows  
+__Windows:__  
 
 venv\Scripts\activate
 
--macOS/Linux  
+__macOS/Linux:__  
 
 source venv/bin/activate
 
@@ -76,11 +69,11 @@ After setting up the environment, you can start exploring the code by opening th
 
 To activate the environment before running notebooks or scripts in future sessions:
 
--Windows  
+__Windows:__  
 
 venv\Scripts\activate
 
--macOS/Linux  
+__macOS/Linux:__  
 
 source venv/bin/activate
 
