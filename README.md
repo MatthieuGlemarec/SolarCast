@@ -19,15 +19,22 @@ The final dataset combines these into a single national-level input table for mo
 
 ## Project Structure
 
-SolarCast/
-├── data/ # Raw weather station and solar generation CSVs
-├── cleaned_data/ # Processed national-level daily weather data
-├── notebooks/ # Jupyter notebooks by stage
-├── models/ # Trained model files (e.g. .pkl)
-├── outputs/ # Graphs, reports, exported forecasts
-├── venv/ # Virtual environment (ignored by Git)
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+SolarCast/  
+├── data/ # Raw weather station and solar generation CSVs  
+
+├── cleaned_data/ # Processed national-level daily weather data  
+
+├── notebooks/ # Jupyter notebooks by stage  
+
+├── models/ # Trained model files  
+
+├── outputs/ # Graphs, reports, exported forecasts  
+
+├── venv/ # Virtual environment (ignored by Git)  
+  
+├── requirements.txt # Python dependencies  
+
+└── README.md # Project documentation  
 
 ## Dependencies
 
@@ -51,10 +58,12 @@ python -m venv venv **
 
 ### Step 2: Activate the environment
 
--Windows
+-Windows  
+
 venv\Scripts\activate
 
--macOS/Linux
+-macOS/Linux  
+
 source venv/bin/activate
 
 ### Step 3: Install project requirements
@@ -67,13 +76,15 @@ After setting up the environment, you can start exploring the code by opening th
 
 To activate the environment before running notebooks or scripts in future sessions:
 
--Windows
+-Windows  
+
 venv\Scripts\activate
 
--macOS/Linux
+-macOS/Linux  
+
 source venv/bin/activate
 
-Then run:
+Then run:  
 
 jupyter notebook
 
@@ -96,4 +107,4 @@ This ensures the project remains reproducible.
 - [ ] (Optional) Deployed a daily prediction dashboard  
 
 
-This project is under active development as part of a capstone submission for the AI/ML stream.
+This project is under active development as part of a capstone submission for the AI/ML stream of science in computing at the National College of Ireland.
