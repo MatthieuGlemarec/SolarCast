@@ -43,20 +43,18 @@ To install all dependencies into a clean environment, follow the setup instructi
 
 ## Setting Up the Virtual Environment
 
-This project uses a virtual environment to isolate dependencies. To create and activate it:
+This project uses a virtual environment to isolate dependencies. To create and activate it open the terminal:
 
 ### Step 1: Create the environment
-
--in the terminal-
 
 python -m venv venv **
 
 ### Step 2: Activate the environment
 
-# Windows
+-Windows
 venv\Scripts\activate
 
-# macOS/Linux
+-macOS/Linux
 source venv/bin/activate
 
 ### Step 3: Install project requirements
@@ -69,16 +67,15 @@ After setting up the environment, you can start exploring the code by opening th
 
 To activate the environment before running notebooks or scripts in future sessions:
 
-# Windows
+-Windows
 venv\Scripts\activate
 
-# macOS/Linux
+-macOS/Linux
 source venv/bin/activate
 
 Then run:
 
 jupyter notebook
-
 
 ## Updating Requirements
 
