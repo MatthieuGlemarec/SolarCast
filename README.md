@@ -6,7 +6,7 @@ SolarCast is a machine learning project focused on predicting daily solar electr
 
 This project uses data from:
 
-- Met Éireann: daily weather summaries from nine stations across the Republic of Ireland
+- Met Éireann: daily weather summaries from nine geographically representative stations across the Republic of Ireland
 - EirGrid (or SEAI): national solar generation data, aggregated at daily resolution
 
 Weather attributes used include:
@@ -14,6 +14,7 @@ Weather attributes used include:
 - Maximum and minimum air temperature (°C)
 - Precipitation (mm)
 - Mean CBL pressure (hPa)
+- Solar Generation (MWh)
 
 The final dataset combines these into a single national-level input table for model training.
 
@@ -110,8 +111,8 @@ This ensures the project remains reproducible.
 ## Project Status
 
 - [x] Downloaded and cleaned 9 Met Éireann weather station datasets  
-- [x] Aggregated daily weather metrics to national level  
-- [x] Cleaned daily solar generation data for 2024  
+- [x] Aggregated daily weather metrics to create national average 
+- [x] Downloaded and cleaned daily EirGrid (or SEAI) solar generation data for 2024  
 - [x] Merged weather and solar datasets  
 - [ ] Trained initial ML model  
 - [ ] Built forecast evaluation and visualisation tools  
