@@ -110,9 +110,9 @@ This ensures the project remains reproducible.
 ## Project Status
 
 - [x] Downloaded and cleaned 9 Met Éireann weather station datasets  
-- [ ] Aggregated daily weather metrics to national level  
-- [ ] Cleaned daily solar generation data for 2024  
-- [ ] Merged weather and solar datasets  
+- [x] Aggregated daily weather metrics to national level  
+- [x] Cleaned daily solar generation data for 2024  
+- [x] Merged weather and solar datasets  
 - [ ] Trained initial ML model  
 - [ ] Built forecast evaluation and visualisation tools  
 - [ ] (Optional) Deployed a daily prediction dashboard  
