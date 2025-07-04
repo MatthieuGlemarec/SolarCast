@@ -9,14 +9,20 @@ This project uses data from:
 - Met Éireann: daily weather summaries from nine geographically representative stations across the Republic of Ireland
 - EirGrid (or SEAI): national solar generation data, aggregated at daily resolution
 
-Weather attributes used include:
-- Global radiation (J/cm²)
-- Maximum and minimum air temperature (°C)
-- Precipitation (mm)
-- Mean CBL pressure (hPa)
-- Solar Generation (MWh)
+### Aggregated National Irish Weather and Solar data
 
-The final dataset combines these into a single national-level input table for model training.
+The final dataset combines data into a single national-level table with 366 values, covering the year 2024, for model training.
+
+#### Attributes
+
+- date: YYYY-MM-DD
+- rain: Precipitation (mm)
+- maxtp: Maximum air temperature (°C)
+- mintp: Minimum air temperature (°C)
+- cbl: Mean CBL pressure (hPa)
+- glorad: Global radiation (J/cm²)
+- solargen: Solar Generation (MWh)
+
 
 ## Project Structure
 
