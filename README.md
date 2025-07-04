@@ -114,6 +114,7 @@ This ensures the project remains reproducible.
 - [x] Aggregated daily weather metrics to create national average 
 - [x] Downloaded and cleaned daily EirGrid (or SEAI) solar generation data for 2024  
 - [x] Merged weather and solar datasets  
+- [ ] Conduct Exploratory Data Analysis (EDA)  
 - [ ] Trained initial ML model  
 - [ ] Built forecast evaluation and visualisation tools  
 - [ ] (Optional) Deployed a daily prediction dashboard  
