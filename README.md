@@ -84,7 +84,7 @@ After setting up the environment, you can start exploring the code by opening th
 To activate the environment before running notebooks or scripts in future sessions:
 
 **Note:** If you see an error about running scripts being disabled when activating the virtual environment, temporarily allow script execution for the current session by running:  
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process    
+**Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process**   
 
 __Windows:__  
 
