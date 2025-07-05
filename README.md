@@ -15,13 +15,13 @@ The final dataset combines data into a single national-level table with 366 valu
 
 #### Attributes
 
-- date: YYYY-MM-DD
-- rain: Precipitation (mm)
-- maxtp: Maximum air temperature (°C)
-- mintp: Minimum air temperature (°C)
-- cbl: Mean CBL pressure (hPa)
-- glorad: Global radiation (J/cm²)
-- solargen: Solar Generation (MWh)
+- `date` – YYYY-MM-DD
+- `rain` – Precipitation (mm)
+- `maxtp` – Maximum air temperature (°C)
+- `mintp` – Minimum air temperature (°C)
+- `cbl` – Mean CBL pressure (hPa)
+- `glorad` – Global radiation (J/cm²)
+- `solargen` – Solar Generation (MWh)
 
 
 ## Project Structure
