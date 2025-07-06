@@ -34,6 +34,7 @@ SolarCast/
 ├── outputs/ # Graphs, reports, exported forecasts  
 ├── venv/ # Virtual environment (ignored by Git)    
 ├── requirements.txt # Python dependencies  
+├── Journal.md # Project Journal
 └── README.md # Project documentation  
 
 ## Dependencies
