@@ -25,9 +25,7 @@ The goal is to understand the data's structure, identify trends and patterns, an
 
 ### Steps taken
 
-## 01
-
-- Individual OLS to compare each predictor with the target variable `solargen` to identify predictive power and guide feature selection.
+## 01: Individual OLS to compare each predictor with the target variable `solargen` to identify predictive power and guide feature selection.
 
 ### Observed Result: glorad
 glorad shows a strong positive relationship with solargen (R² = 0.689, p < 0.001)
@@ -48,9 +46,7 @@ R² (0.094) indicates it explains just under 10% of the variation in solar gener
 ### Key finding:
 cbl's weak relationship suggest it may be an inconsequential predictor.
 
-## 02 
-
-- Multiple OLS to compare all predictor vs only strongly correlated predictors with the target variable `solargen` to identify predictive power and guide feature selection.
+## 02: Multiple OLS to compare all predictor vs only strongly correlated predictors with the target variable `solargen` to identify predictive power and guide feature selection.
 
 ### Observed Result: rain, maxtp, mintp, cbl, glorad (all predictors)
 Strong linear relationship observed between predictors and solar generation (R² = 0.757, p < 0.001).  
@@ -70,9 +66,7 @@ This confirms that cbl was not contributing meaningfully, and dropping it was ap
 Strong overall model fit (R² = 0.756, p < 0.001) indicating the model explains ~75% of the variation in solar generation.
 There’s no immediate statistical reason to remove any of the remaining predictors.
 
-## 03 
-
-- Create Diagnostic Plots for further analysis of reduced model. Residuals vs Fitted, Residuals Q-Q Plot, Residuals Histogram, VIF
+## 03: Create Diagnostic Plots for further analysis of reduced model. Residuals vs Fitted, Residuals Q-Q Plot, Residuals Histogram, VIF
 
 ### Observations:
 - A widening of the spread of residuals as the fitted values increase indicates non-constant variance (heteroscedasticity).
@@ -86,9 +80,7 @@ While mintp's R² (0.094) indicates it only explains under 10% of the variation 
 - mintp will be dropped from the model for this proof of concept linear regression model.  
 It may later be added back in when more complex models are fitted such as Random Forest which is not sensitive to multicollinearity.
 
-## 04
-
-- Drop mintemp from new model as it is likely redundant. Fit OLS model (reduced2).
+## 04: Drop mintemp from new model as it is likely redundant. Fit OLS model (reduced2).
 
 ### Key finding:
 
@@ -96,9 +88,7 @@ It may later be added back in when more complex models are fitted such as Random
 - VIF: Dropping mintp leads to a notable improvement in multicollinearity, with VIF values for remaining predictors reduced to acceptable levels (maxtp VIF = 6.87).
 - This trade-off between a small loss in R² and improved model stability and interpretability suggests that excluding mintp is beneficial for building a more reliable regression model.
 
-## 05
-
-- Address heteroscedasticity within current OLS model
+## 05: Address heteroscedasticity within current OLS model
 
 ### Steps taken
 - Apply log-transform on solargen
@@ -128,5 +118,24 @@ The normality of residuals has slightly decreased due to the log transformation.
 The log transformation improved variance stability (a more critical issue) at the expense of a minor increase in skewness.
 This trade off is acceptible and so, model_log_solargen appears to be the reasonable choice for model training
 
+## 06: Apply Polynominal Regression to the Strongest Predictor to Gain Precision.
 
+### Steps take
+- Add a quadratic term for 'glorad' to account for non-linear effects in solar generation.
+- This aims to improve model performance in higher radiation ranges where the linear model underpredicts.
+-Conduct anova test to validate improvements.
+- Observe results.
+
+### Observations
+- Reduced2 -     	(RMSE: 2756.75)	- (MAE: 2105.45)
+- Log-transformed -	(RMSE: 4337.00) - (MAE: 2636.23)
+- Quadratic Model -	(RMSE: 2687.25)	- (MAE: 2041.25)
+
+#### Anova Result: reduced2 v model_poly
+- F-statistic = 18.92: A high number that suggest meaningful improvement
+- P-value - 0.000018: Meaning the improvement is statistically significant.
+
+- The Quadratic Model performs best so far in terms of both RMSE and MAE.
+- This suggests that introducing non-linearity (via a polynomial term) better captures the relationship between predictors and solargen.
+-The Quadratic Model avoids transformation artifacts (like log-scale back-transform issues), and improves predictive accuracy.
 
