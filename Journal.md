@@ -15,6 +15,26 @@ Since aggregated national-level weather data for Ireland is not publicly availab
 - Convert 15 min granularity to daily form
 - Merge Solar Generation data with national Irish aggregated weather
 
+### Original Weather Station Key
+date:  -  00 to 00 utc					
+rain:  -  Precipitation Amount (mm)					
+maxtp: -  Maximum Air Temperature (C)"					
+mintp: -  Minimum  Air Temperature (C)					
+gmin:  -  09utc Grass Minimum Temperature (C)					
+soil:  -  Mean 10cm soil temperature (C)"					
+cbl:   -  Mean CBL Pressure (hpa)					
+wdsp:  -  Mean Wind Speed (kt)					
+hm:    -  Highest ten minute mean wind speed (kt)"					
+ddhm:  -  Wind Direction at max 10 min mean (deg)                  					
+hg:    -  Highest Gust (kt)					
+pe:    -  Potential Evapotranspiration (mm)  					
+evap:  -  Evaporation (mm)					
+smd_wd:-  Soil Moisture Deficits(mm) well drained					
+smd_md:-  Soil Moisture Deficits(mm) moderately drained					
+smd_pd:-  Soil Moisture Deficits(mm) poorly drained					
+glorad:-  Global Radiation (J/cm sq.)					
+ind:   -  Indicator (i)					
+
 
 ## Exploratory Data Analysis (EDA)
 
