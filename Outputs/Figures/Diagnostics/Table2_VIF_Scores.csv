@@ -1,0 +1,9 @@
+Model,Feature,VIF
+Model_Full,rain,1.6991416178696477
+Model_Full,maxtp,78.01226045186911
+Model_Full,mintp,17.638781989097826
+Model_Full,cbl,19.01555223063483
+Model_Full,glorad,7.596204690208713
+Model_Reduced2,rain,1.6413802252810938
+Model_Reduced2,maxtp,6.867613181607984
+Model_Reduced2,glorad,5.473113260828073
