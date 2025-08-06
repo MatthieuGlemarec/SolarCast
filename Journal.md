@@ -211,4 +211,20 @@ The project will integrate the open-source tool **EirGrid Data Downloader** to f
 ### Steps  
 1. Clone the [EirGrid Data Downloader](https://github.com/Daniel-Parke/EirGrid_Data_Download) repository  
 2. Modify the script to retrieve only **solar generation data**  
-3
+3. Schedule the script to run daily (e.g. via `cron` or Task Scheduler)  
+4. Store the data in a local CSV or database  
+5. Extract and aggregate daily solar generation totals  
+6. Feed this data into the model as lag features (`lag_1`, `lag_2`, etc.) for time-series forecasting
+
+---
+
+### Advantages  
+- **Automation**: No manual download steps required  
+- **Granularity**: Provides 15-minute solar generation readings  
+- **Historical coverage**: Supports access to several years of data for backtesting  
+- **Stability**: Widely used community script, tested and maintained
+
+---
+
+### Summary  
+This approach ensures that solar generation data is automatically ingested into the forecasting model, enabling reliable and up-to-date predictions without relying on forecast-only features. It forms the foundation of a deployable solar forecasting tool suitable for real-world application in the Irish context.
