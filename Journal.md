@@ -133,3 +133,82 @@ The project will adopt a **two-stage modelling pipeline**:
 2. **Stage 2** – Predict solar energy generation using the output from Stage 1 along with other available features.
 
 This design honours physical causality (solar radiation drives generation), mitigates the lack of forecasted `glorad`, and ensures the model remains usable and scalable in a real-world Irish context.
+
+## Pivot: From Two-Stage Pipeline to Historical Forecasting
+
+### Objective  
+Adapt the modelling approach to deliver an accurate and deployable solar generation forecast without relying on `glorad`, which is not directly forecasted by Met Éireann.
+
+---
+
+### Context  
+The project design introduced a two-stage pipeline to resolve a key forecasting constraint:
+
+1. **Stage 1** – Predict `glorad` (global radiation) using forecastable weather inputs (`rain`, `maxtp`, `mintp`)  
+2. **Stage 2** – Use predicted `glorad` to forecast solar energy generation (`solargen`)
+
+While this approach upheld physical realism and was theoretically sound, in practice, the Stage 1 model underperformed. Even advanced machine learning methods like XGBoost were unable to predict `glorad` with sufficient accuracy — test R² scores plateaued around **0.45**, despite extensive hyperparameter tuning and regularisation.
+
+This bottleneck undermined Stage 2 performance, since the key driver (`glorad`) was effectively an unreliable estimate.
+
+---
+
+### Resolution  
+In light of this, and given project time constraints, the pipeline was restructured to remove the dependency on `glorad`.
+
+> The new approach directly forecasts `solargen` using **historical patterns**, rather than relying on future weather-based predictions.
+
+### New Strategy: Time Series Forecasting of Solar Generation
+
+The revised approach treats solar generation (`solargen`) as a **time-dependent process** that can be forecasted using its own past behaviour. This is a widely used method in energy forecasting and allows for both short-term accuracy and model simplicity.
+
+#### Key Steps:
+- Generate **lag features** from historical `solargen` values (e.g., `lag_1`, `lag_2`, `lag_7`)
+- Optionally include lagged weather variables if necessary (`maxtp_lag1`, `rain_lag2`)
+- Train a regression model (XGBoost or Random Forest) using lag features to predict future `solargen`
+- Evaluate using standard metrics (R², RMSE, MAE)
+
+
+### Justification  
+- **Practicality**: Removes reliance on unavailable or unreliable features  
+- **Performance**: Leverages autocorrelation within solar generation, which has shown promising predictive power in preliminary tests  
+- **Scalability**: Can easily incorporate future enhancements (e.g., seasonality, weather-lag hybrids)  
+- **Deployability**: Produces usable forecasts even in the absence of live weather data  
+
+
+### Summary  
+While the original two-stage pipeline conceptually addressed Ireland’s forecasting challenges, the execution revealed a key constraint: forecastable weather variables alone were insufficient to reliably predict `glorad`. In response, the project pivoted to a **time series regression approach**, allowing `solargen` to be forecasted directly using historical data.
+
+This shift aligns with time-tested industry practices, maintains scientific integrity, and ensures the project remains achievable and impactful within the project timeline.
+
+
+
+
+
+
+
+
+
+## Deployment Plan: Automating Solar Generation Data Collection
+
+### Objective  
+Enable daily, real-time solar generation forecasting by automating the ingestion of live solar generation data from EirGrid.
+
+---
+
+### Context  
+To maintain a functional forecasting pipeline, the model requires up-to-date solar generation data at a daily (or sub-daily) resolution. EirGrid publishes 15-minute solar generation figures via its **Smart Grid Dashboard**. However, this data is only available via a downloadable Excel sheet from their public-facing website and is not currently offered through an official API.
+
+Given the absence of a formal endpoint, a practical alternative was required to automate this ingestion process and support live deployment of the forecasting model.
+
+---
+
+### Resolution  
+The project will integrate the open-source tool **EirGrid Data Downloader** to fetch solar generation data at 15-minute resolution. This Python-based utility automates data downloads from EirGrid's Smart Grid Dashboard and outputs clean, timestamped CSVs suitable for ingestion into the prediction pipeline.
+
+---
+
+### Steps  
+1. Clone the [EirGrid Data Downloader](https://github.com/Daniel-Parke/EirGrid_Data_Download) repository  
+2. Modify the script to retrieve only **solar generation data**  
+3
