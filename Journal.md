@@ -187,44 +187,65 @@ This shift aligns with time-tested industry practices, maintains scientific inte
 
 
 
-
-
-## Deployment Plan: Automating Solar Generation Data Collection
+## Solar Generation Forecasting: Deployment & Modelling Strategy Update
 
 ### Objective  
-Enable daily, real-time solar generation forecasting by automating the ingestion of live solar generation data from EirGrid.
+Enable reliable and accurate solar energy forecasting in Ireland using historical data, while laying the groundwork for future live deployment once real-time data access becomes viable.
 
 ---
 
 ### Context  
-To maintain a functional forecasting pipeline, the model requires up-to-date solar generation data at a daily (or sub-daily) resolution. EirGrid publishes 15-minute solar generation figures via its **Smart Grid Dashboard**. However, this data is only available via a downloadable Excel sheet from their public-facing website and is not currently offered through an official API.
+The original goal of the project was to build a **live forecasting pipeline** using up-to-date weather and solar generation data. While forecastable weather metrics were accessible via Met Éireann, **real-time solar generation data** proved significantly harder to obtain.
 
-Given the absence of a formal endpoint, a practical alternative was required to automate this ingestion process and support live deployment of the forecasting model.
-
----
-
-### Resolution  
-The project will integrate the open-source tool **EirGrid Data Downloader** to fetch solar generation data at 15-minute resolution. This Python-based utility automates data downloads from EirGrid's Smart Grid Dashboard and outputs clean, timestamped CSVs suitable for ingestion into the prediction pipeline.
+EirGrid publishes 15-minute solar generation figures through its **Smart Grid Dashboard**, but this data is:
+- Not accessible via a public API
+- Only downloadable as Excel sheets through a user interface
+- Inconsistent in terms of historical coverage and format
 
 ---
 
-### Steps  
-1. Clone the [EirGrid Data Downloader](https://github.com/Daniel-Parke/EirGrid_Data_Download) repository  
-2. Modify the script to retrieve only **solar generation data**  
-3. Schedule the script to run daily (e.g. via `cron` or Task Scheduler)  
-4. Store the data in a local CSV or database  
-5. Extract and aggregate daily solar generation totals  
-6. Feed this data into the model as lag features (`lag_1`, `lag_2`, etc.) for time-series forecasting
+### Attempted Solutions  
+Efforts to automate solar data ingestion included:
+- Modifying the open-source [EirGrid Data Downloader](https://github.com/Daniel-Parke/EirGrid_Data_Download)
+- Analysing network traffic to extract endpoints from the [EirGrid Solar Dashboard](https://www.smartgriddashboard.com/roi/solar/)
+- Investigating web scraping or `.xlsx` automation pipelines
+
+Despite extensive attempts, these methods were either **unsuccessful**, **unstable**, or **unsuitable** for production use.
 
 ---
 
-### Advantages  
-- **Automation**: No manual download steps required  
-- **Granularity**: Provides 15-minute solar generation readings  
-- **Historical coverage**: Supports access to several years of data for backtesting  
-- **Stability**: Widely used community script, tested and maintained
+### New Strategy: Historical Time Series Forecasting
+
+Given the inability to reliably automate recent solar data ingestion, the project has pivoted to a **purely historical modelling approach**. This will still meet project goals in terms of evaluating forecasting methods and building a viable model.
+
+> **Training Period:** January 2023 – December 2023  
+> **Testing Period:** January 2024 – December 2024
+
+This approach allows the model to:
+- Learn from a full year of seasonal variation
+- Leverage lag features and weather predictors (rain, temperature, calendar features)
+- Demonstrate performance in realistic test conditions
+
+---
+
+### Deployment Considerations (Future Use Case)
+
+If EirGrid were to expose a proper API or if a stable scraping pipeline were built, this model could support **daily real-time forecasts** by:
+1. Feeding in forecastable weather variables (rain, maxtemp, mintemp)
+2. Incorporating yesterday’s solar generation (via a lag feature)
+3. Generating predictions for the next day — or recursively, for up to 7 days
+
+A potential pipeline would involve:
+- Daily download of solar generation (15-min → daily aggregate)
+- Appending data to a master dataset
+- Feeding updated features into the model for rolling prediction
+
+This could be automated using tools like `cron`, Task Scheduler, or a CI/CD pipeline.
 
 ---
 
 ### Summary  
-This approach ensures that solar generation data is automatically ingested into the forecasting model, enabling reliable and up-to-date predictions without relying on forecast-only features. It forms the foundation of a deployable solar forecasting tool suitable for real-world application in the Irish context.
+Given current constraints, the forecasting model will be developed using high-quality **historical solar and weather data**, trained on 2023 and tested on 2024. While **live deployment is not feasible at this stage**, the model has been designed with future integration in mind — allowing it to be easily extended into a production-ready forecasting tool when reliable, real-time solar generation data becomes available.
+
+
+
