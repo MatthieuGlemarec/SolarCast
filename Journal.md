@@ -249,3 +249,95 @@ Given current constraints, the forecasting model will be developed using high-qu
 
 
 
+
+## Journal Entry: Project Direction Update & Refined Modelling Plan
+
+### Project Pivot Summary  
+Due to the inaccessibility of **live solar generation data** in Ireland, the original plan to build a real-time solar forecasting model has been re-evaluated. Despite substantial efforts to retrieve current solar data via API access, custom downloaders, and site scraping from the EirGrid Smart Grid Dashboard, the data remains locked behind non-programmatic interfaces. This severely limits the feasibility of real-time deployment.
+
+### Updated Objective  
+The project's focus is now to **build a highly accurate historical solar generation forecasting model** using available weather and solar data from 2023 and 2024. The aim is to optimize model performance and predictive accuracy with the available dataset, while ensuring the solution is designed for **future deployment** when live data access becomes viable.
+
+### Feature Selection Rationale  
+Earlier experimentation revealed that a simple regression model using only the following features:
+- **Global radiation (glorad)**
+- **Minimum temperature (mintp)**
+- **Maximum temperature (maxtp)**
+- **Rainfall (rain)**
+
+…achieved an **R² score of approximately 0.75**, highlighting strong predictive capability from these features alone. This motivated a return to these core variables — now applying them within a more powerful **XGBoost regression model** to further increase predictive performance.
+
+### Updated Modelling Strategy
+- Use **2023 data** for training and **2024 data** for testing  
+- Focus feature engineering on the strongest weather-based predictors: `glorad`, `mintp`, `maxtp`, `rain`
+- Apply **XGBoost**, a gradient-boosted tree algorithm known for handling non-linearities and complex interactions
+- Perform **grid search hyperparameter tuning** to maximize performance  
+- Evaluate using R², RMSE, and MAE for transparency in both training and test results
+
+### Additional Enhancement: Seasonality Features  
+To further improve model performance and robustness, **calendar-based features** will be incorporated:
+- `dayofyear` — to capture the seasonal bell-curve shape of solar generation in Ireland
+- `month` — to allow for discrete monthly variation
+These **seasonality indicators** should help the model learn macro patterns in solar behavior across the year, which may otherwise be missed by purely weather-driven features.
+
+---
+
+### Justification & Future Considerations  
+This refined approach achieves several objectives:
+- Leverages proven strong predictors in a more advanced model
+- Provides a realistic and rigorous historical validation
+- Keeps the project scoped and feasible within remaining time
+- Aligns with original deployment goals, enabling **future integration** of real-time forecasting when data access improves
+
+---
+
+### Reflection  
+This is a **strategically sound** direction for the project. It acknowledges data constraints while still producing a valuable and technically challenging deliverable. By blending **simple regression insights**, **powerful machine learning models**, and **seasonal feature engineering**, the project introduces **innovation** into the modelling process that goes beyond standard techniques — strengthening both the academic rigor and real-world relevance of the work.
+
+
+
+
+## 2024 XGBoost Model – Initial Results and Analysis
+
+### Objective  
+To develop a high-performing regression model that predicts daily solar energy generation using observed weather data, specifically:
+- glorad (global radiation)
+- rain (precipitation)
+- maxtp and mintp (maximum and minimum temperatures)
+
+### Modelling Strategy  
+A baseline XGBoost regression model was trained using only 2024 data. This approach provides:
+- Clean, fully complete data for all calendar months
+- The ability to evaluate predictive performance across seasons
+
+Calendar-based seasonality features (month, dayofyear) were also included. Grid search was used to tune hyperparameters, targeting the highest possible R² score.
+
+### Performance  
+After hyperparameter tuning, the model achieved the following scores:
+
+- Train: R²: 0.977 | RMSE: 830.19 | MAE: 615.32  
+- Test: R²: 0.861 | RMSE: 1997.71 | MAE: 1327.05  
+
+These scores show strong generalization to unseen data and a large improvement over the baseline linear regression model developed earlier in the project.
+
+Although there is a performance gap between the training and test sets, this is expected given the smaller dataset size and natural variability in weather data.
+
+### Observations
+- The inclusion of glorad and weather features significantly improves accuracy  
+- Additional features like sin_doy and cos_doy were tested but did not improve performance and were excluded
+- Learning curves suggest that more data could reduce overfitting and improve generalization further
+
+### Next Steps
+Due to the limited availability of solar generation data (which only began in April 2023), the model currently lacks earlier seasonal data.
+
+#### Planned Actions:
+- Download and preprocess solar generation and national weather data from April 2023 to December 2023
+- Merge this with the existing 2024 dataset to build a larger, more seasonally diverse training set
+- Retrain the model to evaluate whether the additional data improves performance and stability
+
+The updated dataset will help the model better understand solar patterns and increase overall robustness.
+
+---
+
+Model Saved As:  
+`../../models/XGBoost_2024_Model.pkl`
