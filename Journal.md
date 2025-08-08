@@ -341,3 +341,46 @@ The updated dataset will help the model better understand solar patterns and inc
 
 Model Saved As:  
 `../../models/XGBoost_2024_Model.pkl`
+
+
+
+## Capacity Growth Impact on 2023–2025 Model
+
+### Context  
+When the dataset was expanded from a single year (2024) to a multi-year range covering April 2023 to June 2025, the XGBoost model’s performance dropped sharply.  
+The original 2024-only model achieved an R² of 0.861 on the test set, but the expanded dataset resulted in much lower test R² scores (around 0.47), even after parameter tuning and adding seasonality features.
+
+### What the Data Showed  
+The expectation was that adding more data would help the model generalise better and capture more seasonal variation.  
+However, an analysis of yearly averages revealed a very different story:  
+
+In 2023, daily solar generation averaged about 5,415 MWh with a maximum daily value of around 11,439 MWh.  
+In 2024, the average rose to about 7,203 MWh, and the maximum jumped to over 25,000 MWh.  
+By 2025, the average daily generation had more than doubled compared to 2023, reaching roughly 16,197 MWh, with maximum daily values close to 57,000 MWh.  
+
+Meanwhile, average daily global radiation (glorad) stayed relatively stable across all years:  
+- 2023: ~1,149  
+- 2024: ~939  
+- 2025: ~1,180  
+
+### Why This is a Problem  
+The model assumes that the relationship between weather conditions (glorad, rain, temperature, etc.) and solar generation is stable over time.  
+This worked for the 2024 dataset, but in the multi-year data, that relationship changes dramatically because the installed solar capacity in Ireland has grown.  
+
+An article published on 20 June 2025 confirmed a 160% increase in installed solar capacity since 2023. This means that for the same weather conditions, more solar energy is now produced than in earlier years, breaking the model’s assumptions.
+
+### Next Steps  
+To make the model useful over multiple years, it will need a way to account for capacity growth. Options include:  
+
+1. Adding a feature that reflects changes in capacity, such as the 95th percentile generation value for each year.  
+2. Adjusting the solar generation target values for capacity before training and then scaling predictions back up.  
+3. Including a time-related feature (such as year or a time index) so the model can learn long-term trends.  
+
+The aim is to recover or exceed the accuracy of the original 2024 model while making it robust to future changes in installed capacity.
+
+### Additional Note  
+EirGrid states that in April 2023, solar generation data began recording during the early stages of solar plant deployment, and the numbers only stabilised later.  
+This means that 2023 data may not be reliable, and using 2024 data alone may in fact be the best approach for now until more stable and consistent records are available.  
+In the future, all of 2025’s data could be added to 2024’s to create a more reliable and representative training dataset.
+
+
