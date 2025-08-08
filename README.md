@@ -26,16 +26,19 @@ The final dataset combines data into a single national-level table with 366 valu
 
 ## Project Structure
 
-SolarCast/  
-├── data/ # Raw weather station and solar generation CSVs  
-├── cleaned_data/ # Processed national-level daily weather data  
-├── notebooks/ # Jupyter notebooks by stage  
-├── models/ # Trained model files  
-├── outputs/ # Graphs, reports, exported forecasts  
-├── venv/ # Virtual environment (ignored by Git)    
-├── requirements.txt # Python dependencies  
-├── Journal.md # Project Journal
-└── README.md # Project documentation  
+SolarCast/
+├── Data/                # Raw weather station and solar generation CSVs
+├── Cleaned_Data/        # Processed national-level daily weather data
+├── Notebooks/           # Jupyter notebooks by stage
+├── Models/              # Trained model files
+├── Outputs/             # Graphs, reports, exported forecasts
+├── Src/                 # Reusable Python modules for modelling and preprocessing
+├── Tests/               # Unit tests for Src modules
+├── venv/                # Virtual environment (ignored by Git)
+├── requirements.txt     # Python dependencies
+├── Journal.md           # Project journal
+└── README.md            # Project documentation
+
 
 ## Dependencies
 
