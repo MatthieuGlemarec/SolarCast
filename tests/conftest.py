@@ -3,13 +3,16 @@ import pandas as pd
 import numpy as np
 
 @pytest.fixture
-def sample_df():
-    data = {
-        "date": pd.date_range("2024-01-01", periods=6, freq="D"),
-        "glorad": [100, 200, 150, 180, 210, 190],
-        "maxtp": [12, 14, 11, 13, 15, 14],
-        "mintp": [5, 6, 4, 5, 7, 6],
-        "rain": [0, 5, 2, 0, 1, 3],
-        "solargen": [1000, 2000, 1500, 1800, 2200, 2100]
-    }
-    return pd.DataFrame(data)
+def tiny_df():
+    # small 2 year sample
+    dates = pd.date_range("2024-05-01", periods=12, freq="7D").tolist() + \
+            pd.date_range("2025-05-01", periods=12, freq="7D").tolist()
+    n = len(dates)
+    return pd.DataFrame({
+        "date": dates,
+        "glorad": np.linspace(800, 1400, n),
+        "rain": np.linspace(0, 10, n),
+        "maxtp": np.linspace(8, 24, n),
+        "mintp": np.linspace(2, 14, n),
+        "solargen": np.linspace(5000, 15000, n)
+    })
