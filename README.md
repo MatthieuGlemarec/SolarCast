@@ -50,7 +50,9 @@ All dependencies are listed in `requirements.txt`. Core packages include:
 - `scipy` – scientific computing  
 - `statsmodels` – statistical modeling and diagnostics  
 - `patsy` – formula interface for statsmodels  
-- `jupyter` – interactive notebooks environment
+- `jupyter` – interactive notebooks environment  
+- `xgboost` – gradient boosting model implementation    
+- `pytest` – unit testing framework   
 
 To install all dependencies into a clean environment, follow the setup instructions below.
 
@@ -111,6 +113,16 @@ Kernel > Change kernel > Python (solarcast-venv)
 
 This ensures the notebook uses the correct virtual environment and installed packages.  
 
+## Running Tests
+
+The project includes a full unit and integration test suite for the `Src` modules. To run all tests, ensure your virtual environment is activated, navigate to the project root, and execute:
+
+pytest Tests -v
+
+
+This will run all test files in the `Tests/` directory, displaying verbose output for each case. All tests should pass before continuing with further development or deployment.
+
+
 ## Updating Requirements
 
 When adding any new packages update requirements.txt with:
@@ -127,7 +139,7 @@ This ensures the project remains reproducible.
 - [x] Merged weather and solar datasets  
 - [x] Conducted Exploratory Data Analysis (EDA)  
 - [x] Trained initial ML model  
-- [x] Trained advanced ML models (Polynomial Regression, XGBoost)  
+- [x] Trained advanced tree based ML models
 - [x] Evaluated model performance and improvements  
 - [x] Scaled historical solar generation data for capacity growth adjustments  
 - [x] Built forecast evaluation and visualisation tools  
