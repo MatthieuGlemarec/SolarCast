@@ -26,7 +26,7 @@ The final dataset combines data into a single national-level table with 366 valu
 
 ## Project Structure
 
-SolarCast/
+SolarCast/  
 ├── Data/                # Raw weather station and solar generation CSVs  
 ├── Cleaned_Data/        # Processed national-level daily weather data  
 ├── Notebooks/           # Jupyter notebooks by stage  
@@ -122,13 +122,17 @@ This ensures the project remains reproducible.
 ## Project Status
 
 - [x] Downloaded and cleaned 9 Met Éireann weather station datasets  
-- [x] Aggregated daily weather metrics to create national average 
+- [x] Aggregated daily weather metrics to create national average  
 - [x] Downloaded and cleaned daily EirGrid (or SEAI) solar generation data for 2024  
 - [x] Merged weather and solar datasets  
-- [x] Conduct Exploratory Data Analysis (EDA)  
-- [ ] Trained initial ML model  
-- [ ] Built forecast evaluation and visualisation tools  
-- [ ] (Optional) Deployed a daily prediction dashboard  
+- [x] Conducted Exploratory Data Analysis (EDA)  
+- [x] Trained initial ML model  
+- [x] Trained advanced ML models (Polynomial Regression, XGBoost)  
+- [x] Evaluated model performance and improvements  
+- [x] Scaled historical solar generation data for capacity growth adjustments  
+- [x] Built forecast evaluation and visualisation tools  
+- [x] Developed and ran unit test suite for reusable functions  
+
 
 
 This project is under active development as part of a capstone submission for the AI/ML stream of science in computing at the National College of Ireland.
