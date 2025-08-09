@@ -254,8 +254,7 @@ pytest -v
 
 ``` 
 
-
-## Reflection and Context
+## Reflection
 
 A major challenge in this project was the availability and reliability of data. National solar generation data recording in Ireland only began in April 2023, and early values have been noted as potentially unreliable until the system stabilised. This leaves only around 12–18 months of fully dependable data for training and testing, which inevitably limits the model's ability to capture long-term patterns and rare extreme events. As more years of data become available, these models will naturally improve in accuracy and robustness. In many ways, this project captures the early stages of solar generation prediction in Ireland.
 
@@ -270,5 +269,6 @@ It was important to keep the scope focused on Ireland despite these challenges. 
 This project successfully demonstrated the end-to-end process of building, evaluating, and testing a machine learning model for predicting daily solar generation in Ireland. Despite significant data constraints, a capacity-adjusted XGBoost model was developed that substantially outperformed the initial polynomial regression benchmark. The work included structured testing, model evaluation, and clear identification of current barriers to real-world deployment.
 
 The results show that the approach is technically sound and adaptable. Once longer and more reliable datasets become available—and forecastable `glorad` or real-time generation data can be incorporated—this prototype could be transitioned into an operational forecasting tool. In the context of Ireland’s fast-growing renewable sector, having models and processes ready for such a transition is a valuable outcome in itself.
+
 
 
