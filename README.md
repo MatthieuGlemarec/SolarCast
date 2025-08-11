@@ -1,6 +1,8 @@
 # SolarCast: Solar Generation Forecasting for Ireland
 
-SolarCast is a machine learning project focused on predicting daily solar electricity generation in Ireland using historical solar output and daily weather data. The aim is to support renewable energy planning and visibility by providing a 7-day solar forecast trained on national-level weather inputs.
+SolarCast is a machine learning project aimed at predicting daily national solar electricity generation in Ireland using historical solar output and daily weather data. The primary goal is to evaluate the feasibility of accurate forecasting using only publicly available Irish datasets, with a focus on supporting renewable energy planning and grid management.
+
+While the original concept included a continuously updated 7-day live forecast, the current system is delivered as an offline prototype due to the absence of forecasted global radiation data and limited historical solar generation records. The modular design allows for straightforward deployment once these data sources become available.
 
 ## Project Overview
 
@@ -22,7 +24,6 @@ The final dataset combines data into a single national-level table with 366 valu
 - `cbl` – Mean CBL pressure (hPa)
 - `glorad` – Global radiation (J/cm²)
 - `solargen` – Solar Generation (MWh)
-
 
 ## Project Structure
 
