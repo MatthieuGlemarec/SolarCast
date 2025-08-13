@@ -2,7 +2,7 @@
 
 SolarCast is a machine learning project aimed at predicting daily national solar electricity generation in Ireland using historical solar output and daily weather data. The primary goal is to evaluate the feasibility of accurate forecasting using only publicly available Irish datasets, with a focus on supporting renewable energy planning and grid management.
 
-While the original concept included a continuously updated 7-day live forecast, the current system is delivered as an offline prototype due to the absence of forecasted global radiation data and limited historical solar generation records. The modular design allows for straightforward deployment once these data sources become available.
+The current system is delivered as an offline prototype due to the absence of forecasted global radiation data and limited historical solar generation records. The modular design allows for straightforward deployment once these data sources become available.
 
 ## Project Overview
 
